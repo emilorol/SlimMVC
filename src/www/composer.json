@@ -1,0 +1,28 @@
+{
+  "name": "emilorol/SlimMVC",
+  "type": "project",
+  "description": "A PHP app based on the Slim microframework using Eloquent to deal with the DB.",
+  "homepage": "https://www.emilorol.com",
+  "require": {
+    "slim/slim": "^3.9",
+    "slim/twig-view": "^2.1",
+    "slim/flash": "^0.2.0",
+    "symfony/var-dumper": "^3.2",
+    "illuminate/database": "^5.5",
+    "illuminate/pagination": "^5.5",
+    "pavlakis/slim-cli": "^1.0",
+    "vlucas/phpdotenv": "^2.4",
+    "cocur/slugify": "^3.1"
+  },
+  "authors": [
+      {
+          "name": "Emil Orol",
+          "email": "emilacosta@gmail.com"
+      }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Backend\\": "backend"
+    }
+  }
+}

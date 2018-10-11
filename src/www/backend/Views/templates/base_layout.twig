@@ -1,0 +1,15 @@
+{% spaceless %}
+
+{% include 'templates/base_header.twig' %}
+
+{% include 'templates/base_navigation.twig' %}
+
+{% include 'templates/base_message.twig' %}
+
+{% block content %}{% endblock %}
+
+{# <pre>{{ dump() }}</pre> #}
+
+{% include 'templates/base_footer.twig' %}
+
+{% endspaceless %}
