@@ -6,11 +6,11 @@ use Backend\Models\Sessions;
 
 class Session
 {
-  protected $db;
+  protected $dbaccess;
 
   public function __construct($container)
   {
-    $this->db = $container['db'];
+    $this->dbaccess = $container->get('db');
 
     session_set_save_handler(
                               [$this, '_open'],
@@ -37,31 +37,30 @@ class Session
     return true;
   }
 
-  public function _read($id)
+  public function _read($session_id)
   {
-    $execute = Sessions::select('data')->where('id', $id)->first();
+    $execute = Sessions::select('data')->where('id', $session_id)->first();
 
     if(!is_null($execute))
     {
      return $execute->data;
-    }else{
-     return '';
     }
+    return '';
   }
 
-  public function _write($id, $data)
+  public function _write($session_id, $data)
   {
     $execute = Sessions::updateOrInsert(
-        ['id' => $id],
+        ['id' => $session_id],
         ['access' => REQUEST_TIME, 'data' => $data]
     );
     if($execute){ return true; }
     return false;
   }
 
-  public function _destroy($id)
+  public function _destroy($session_id)
   {
-    $execute = Sessions::where('id', $id)->delete();
+    $execute = Sessions::where('id', $session_id)->delete();
     if($execute){ return true; }
     return false;
   }
