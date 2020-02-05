@@ -24,3 +24,10 @@ package-lock.json
 # logs
 logs
 logs/*
+
+# mix
+*/mix-manifest.json
+mix-manifest.json
+
+# cache
+src/www/cache/

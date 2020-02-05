@@ -2,16 +2,19 @@
 
 date_default_timezone_set('America/New_York');
 
-$dev_hosts = ['localhost', 'localhost:8080'];
+$dev_hosts = ['www.slim-mvc.com', 'www.slim-mvc.com:9035'];
 
-define('IS_DEVELOPMENT', in_array($_SERVER['HTTP_HOST'], $dev_hosts));
+$http_host = filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING);
+define('IS_DEVELOPMENT', in_array(isset($http_host) ? $http_host : 'localhost', $dev_hosts) ? TRUE : FALSE);
 
-define('REQUEST_TIME', (int) $_SERVER['REQUEST_TIME']);
+$request_time = filter_input(INPUT_SERVER, 'REQUEST_TIME', FILTER_VALIDATE_INT);
+define('REQUEST_TIME', (int) $request_time);
 
-define('IP_ADDRESS', $_SERVER['REMOTE_ADDR']);
+$remote_addr = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
+define('IP_ADDRESS', isset($remote_addr) ? $remote_addr : '127.0.1.1');
 
 if (IS_DEVELOPMENT)
 {
   error_reporting(E_ALL);
-  ini_set('display_errors', 1);
+  ini_set('display_errors', "on");
 }

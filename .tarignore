@@ -1,7 +1,0 @@
-src/config
-.DS_Store
-.git
-.gitignore
-node_modules
-.sass-cache
-.env

@@ -1,8 +1,7 @@
 <?php
 
-$container = $app->getContainer();
+declare(strict_types=1);
 
-// Register controllers below
-$container['Pages'] = function ($container) {
+$container->add('Pages', function () use ($container) {
   return new \Backend\Controllers\Pages($container);
-};
+});
